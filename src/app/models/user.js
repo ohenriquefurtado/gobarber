@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import Sequelize, { Model } from 'sequelize'
 import bcrypt from 'bcryptjs'
 
