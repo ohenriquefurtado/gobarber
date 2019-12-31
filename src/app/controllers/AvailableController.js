@@ -20,20 +20,23 @@ class AvailableController {
 
     const searchDate = Number(date)
 
+    // 2019-09-18 10:49:44
+
     const appointments = await Appointment.findAll({
       where: {
-        providerId: req.params.providerId,
+        provider_id: req.params.providerId,
         canceled_at: null,
         date: {
           [Op.between]: [startOfDay(searchDate), endOfDay(searchDate)],
         },
       },
     })
+
     const schedule = [
-      '08:00',
-      '09:00',
-      '10:00',
-      '11:00',
+      '08:00', // 2019-09-18 08:00:00
+      '09:00', // 2019-09-18 09:00:00
+      '10:00', // 2019-09-18 10:00:00
+      '11:00', // ...
       '12:00',
       '13:00',
       '14:00',
@@ -50,8 +53,10 @@ class AvailableController {
         setMinutes(setHours(searchDate, hour), minute),
         0
       )
+
       return {
         time,
+        // format to: 2019-09-18T15:40:44-04:00
         value: format(value, "yyyy-MM-dd'T'HH:mm:ssxxx"),
         available:
           isAfter(value, new Date()) &&

@@ -1,5 +1,5 @@
-import User from '../models/user'
-import File from '../models/file'
+import User from '../models/user';
+import File from '../models/file';
 
 class ProviderController {
   async index(req, res) {
@@ -7,16 +7,13 @@ class ProviderController {
       where: { provider: true },
       attributes: ['id', 'name', 'email', 'avatar_id'],
       include: [
-        {
-          model: File,
-          as: 'avatar',
-          attributes: ['name', 'path', 'url'],
-        },
+        { model: File, as: 'avatar', attributes: ['name', 'path', 'url'] },
       ],
-    })
+    });
 
-    return res.json(providers)
+    return res.json(providers);
   }
 }
 
-export default new ProviderController()
+export default new ProviderController();
+© 2019 GitHub, Inc.
