@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import Sequelize, { Model } from 'sequelize'
 import bcrypt from 'bcryptjs'
 
@@ -23,6 +22,10 @@ class User extends Model {
       }
     })
     return this
+  }
+
+  static associate(models) {
+    this.belongsTo(models.File, { foreignKey: 'avatar_id ', as: 'avatar' })
   }
 
   checkPassword(password) {
